@@ -80,11 +80,6 @@ def main():
         raise ValueError(
             "Can't get samples longer than window size: %s" % hparams.n_ctx)
 
-    if args.model_name != '117M':
-        args.memory_saving_gradients = True
-        if args.optimizer == 'adam':
-            args.only_train_transformer_layers = True
-
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
     config.graph_options.rewrite_options.layout_optimizer = rewriter_config_pb2.RewriterConfig.OFF
