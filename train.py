@@ -271,8 +271,9 @@ def main():
 
                 summary_log.add_summary(v_summary, counter)
 
-                avg_loss = (avg_loss[0] * 0.99 + v_loss,
-                            avg_loss[1] * 0.99 + 1.0)
+                k_s = 0.9999
+                avg_loss = (avg_loss[0] * k_s + v_loss * (1-k_s),
+                            avg_loss[1] * k_s + 1.0 * (1-k_s))
 
                 print(
                     '[{counter} | {time:2.2f}] loss={loss:2.2f} avg={avg:2.2f}'
